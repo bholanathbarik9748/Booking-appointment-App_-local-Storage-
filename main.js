@@ -7,9 +7,11 @@ function sConsole(event) {
     console.log(phone);
     console.log(date);
     
-    console.log(name + phone + date);
+    const myData ={
+        Full_name : name,
+        phone_no : phone,
+        current_Data : date
+    }
 
-    localStorage.setItem('Name',name);
-    localStorage.setItem('Phone no',phone);
-    localStorage.setItem('Date',date);
+    window.localStorage.setItem('myObject',JSON.stringify(myData));
   }
