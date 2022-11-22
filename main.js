@@ -6,6 +6,8 @@ function sConsole(event) {
     console.log(name);
     console.log(phone);
     console.log(date);
+    
+    console.log(name + phone + date);
 
     localStorage.setItem('Name',name);
     localStorage.setItem('Phone no',phone);
