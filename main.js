@@ -15,14 +15,30 @@ function sConsole(event) {
 
     window.localStorage.setItem(myData.phone_no, JSON.stringify(myData));
     show_User(myData);
-    for(let i=0; i< localStorage.length; i++) {
-        let key = localStorage.key(i);
-        alert(`${key}: ${localStorage.getItem(key)}`);
-    }
 }
 
-function show_User(user){
+function show_User(user) {
+    if (localStorage.getItem(user.Full_name)) {
+        removeUserFromScreen(user.Full_name);
+    }
     var ele = document.getElementById('List_of_user');
-    var childHtml = `<li>${user.Full_name} -- ${user.phone_no} -- ${user.current_Data}</li>`;
+    var childHtml = `<li>${user.Full_name} -- ${user.phone_no} -- ${user.current_Data} 
+    <button onclick= delete_list('${user.phone_no}')>Delete User</button>
+    <button onclick= edit_list('${user.phone_no}')>Edit User</button> </li>`;
     ele.innerHTML = ele.innerHTML + childHtml;
+}
+
+function delete_list(phone) {
+    localStorage.removeItem(phone);
+    removeUserFromScreen(phone);
+}
+
+function edit_list(phone) {
+    localStorage.edit_list()
+}
+
+function removeUserFromScreen(phone) {
+    const parentNode = document.getElementById('List_of_user');
+    const childNodeToBeDeleted = document.getElementById(phone);
+    parentNode.removeChild(childNodeToBeDeleted)
 }
