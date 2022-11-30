@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     dataLoader();
 });
 
+function deleteData(id) {
+    axios.delete("https://crudcrud.com/api/2a149edabefb48f080721bab4bfa73c7/appdata/id")
+    .then(res => {console.log(res);})
+    .err(err => {console.log(err);})
+}
+
 function dataLoader() {
     // const dataSet = !JSON.parse(localStorage.getItem('dataSet')) ? [] : JSON.parse(localStorage.getItem('dataSet'));
     // dataSet.forEach(data => {
@@ -49,7 +55,7 @@ function show_User(user) {
     }
     var ele = document.getElementById('List_of_user');
     var childHtml = `<li>${user.Full_name} -- ${user.phone_no} -- ${user.current_Data} 
-    <button onclick= delete_list('${user.phone_no}')>Delete User</button>
+    <button onclick= deleteData('${user.id}')>Delete User</button>
     <button onclick= edit_list('${user.phone_no}')>Edit User</button> </li>`;
     ele.innerHTML = ele.innerHTML + childHtml;
 }
