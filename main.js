@@ -13,7 +13,10 @@ function sConsole(event) {
         current_Data: date
     }
 
-    window.localStorage.setItem(myData.phone_no, JSON.stringify(myData));
+    axios.post("https://crudcrud.com/api/2a149edabefb48f080721bab4bfa73c7/appdata", myData)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    // window.localStorage.setItem(myData.phone_no, JSON.stringify(myData));
     show_User(myData);
 }
 
@@ -33,9 +36,6 @@ function delete_list(phone) {
     removeUserFromScreen(phone);
 }
 
-function edit_list(phone) {
-    localStorage.edit_list()
-}
 
 function removeUserFromScreen(phone) {
     const parentNode = document.getElementById('List_of_user');
