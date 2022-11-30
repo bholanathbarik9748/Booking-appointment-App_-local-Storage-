@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function () {
     dataLoader();
 });
 
+function Edit_user(name,phone_no,date,id){
+    axios.put("https://crudcrud.com/api/2a149edabefb48f080721bab4bfa73c7/appdata/id")
+    .then(res => {
+        res[0] = name;
+        res[1] = phone_no;
+        res[2] = date;
+    })
+    .err(err => {console.log(err);})
+}
+
+
 function deleteData(id) {
     axios.delete("https://crudcrud.com/api/2a149edabefb48f080721bab4bfa73c7/appdata/id")
     .then(res => {console.log(res);})
@@ -56,7 +67,7 @@ function show_User(user) {
     var ele = document.getElementById('List_of_user');
     var childHtml = `<li>${user.Full_name} -- ${user.phone_no} -- ${user.current_Data} 
     <button onclick= deleteData('${user.id}')>Delete User</button>
-    <button onclick= edit_list('${user.phone_no}')>Edit User</button> </li>`;
+    <button onclick= Edit_user('${user.name}','${user.phone}','${user.date}','${user.id}')>Edit User</button> </li>`;
     ele.innerHTML = ele.innerHTML + childHtml;
 }
 
