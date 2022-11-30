@@ -1,3 +1,24 @@
+document.addEventListener('DOMContentLoaded', function () {
+    dataLoader();
+});
+
+function dataLoader() {
+    // const dataSet = !JSON.parse(localStorage.getItem('dataSet')) ? [] : JSON.parse(localStorage.getItem('dataSet'));
+    // dataSet.forEach(data => {
+    //     create_Table(data);
+    // })
+
+    axios.get("https://crudcrud.com/api/2a149edabefb48f080721bab4bfa73c7/appdata")
+        .then(res => {
+            console.log(res);
+
+            for(var it = 0;it < res.data.length;it++){
+                show_User(res.data[it]);
+            }
+        })
+        .catch(err => console.log(err));
+}
+
 function sConsole(event) {
     event.preventDefault();
     var name = document.getElementById("data").value;
@@ -14,10 +35,12 @@ function sConsole(event) {
     }
 
     axios.post("https://crudcrud.com/api/2a149edabefb48f080721bab4bfa73c7/appdata", myData)
-        .then(res => console.log(res))
+        .then(res => {
+            show_User(res.data);
+            console.log(res)
+        })
         .catch(err => console.log(err));
     // window.localStorage.setItem(myData.phone_no, JSON.stringify(myData));
-    show_User(myData);
 }
 
 function show_User(user) {
